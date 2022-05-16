@@ -1,0 +1,33 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "dependencies": {
+    "dexie": "^3.2.2",
+    "dexie-export-import": "^1.0.3"
+  },
+  "description": "my first app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viacheslavorlov/TODOapp.git"
+  },
+  "author": "viacheslav orlov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viacheslavorlov/TODOapp/issues"
+  },
+  "homepage": "https://github.com/viacheslavorlov/TODOapp#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.17.10",
+    "babel-loader": "^8.2.5",
+    "core-js": "^3.22.5",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
