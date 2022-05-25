@@ -1,3 +1,5 @@
+import {Dexie} from "dexie";
+
 document.addEventListener('DOMContentLoaded', () => {
 
 	//creating database structure
