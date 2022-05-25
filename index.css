@@ -77,16 +77,16 @@ button {
 }
 /*#show-all {*/
 
-/*}*/
 
-/*#show-done {*/
 
-/*}*/
-
-#show-not-done {
+/* #show-not-done {
     background: linear-gradient(to right, #cb7773, #bd73cb);
     color: #ffffff;
+} */
 
+.done-btn {
+    background: linear-gradient(to right, #cb7773, #bd73cb);
+    color: #ffffff;
 }
 
 #show-not-done:hover {

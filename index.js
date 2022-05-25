@@ -23,14 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	 };*/
 	submit.addEventListener('click', async (e) => {
 		e.preventDefault();
-
 		const todo = input.value;
 		const date = dateTime.value;
 		const done = false;
 		console.log(todo);
-		db.todos.add({todo, date, done});
+		if (todo) {
+			db.todos.add({todo, date, done});
 		await getTodos();
 		form.reset();
+		}
+		
 	});
 
 	// функция для формирования листа задач
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			return new Date(a.date) - new Date(b.date); // сортировка задач по датам.
 		});
 		formTodoList(allTodos.filter(item => !item.done));
-	}
+	};
     getTodos();
 	//     const doneTodos = allTodos.filter(item => item.done); //сделанные задачи
 	//     const notDoneTodos = allTodos.filter(item => !item.done); //не сделанные задачи
@@ -96,21 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	//смена списков задач
 	const showBtns = document.querySelector('#show-buttons');
+	const allButtons = document.querySelectorAll('.buttons');
+	showBtns.querySelector('#show-not-done').classList.add('done-btn');
 
+	
 	showBtns.addEventListener('click', async (e) => {
-		const allTodos = await db.todos.reverse().toArray();
+		allButtons.forEach(item => item.classList.remove('done-btn'));
+		const allTodos =  await db.todos.reverse().toArray();
 		allTodos.sort((a, b) => {
 			return new Date(a.date) - new Date(b.date); // сортировка задач по датам.
 		});
 		if (e.target.id === 'show-not-done') {
 			formTodoList(allTodos.filter(item => !item.done));
+			e.target.classList.add('done-btn');
 		}
 		if (e.target.id === 'show-done') {
 			formTodoList(allTodos.filter(item => item.done));
+			e.target.classList.add('done-btn');
 		}
 		if (e.target.id === 'show-all') {
 			formTodoList(allTodos);
+			e.target.classList.add('done-btn');
 		}
-	})
+	});
 });
-
