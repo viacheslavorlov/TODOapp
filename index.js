@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		input = document.querySelector("#new-task-input"),
 		dateTime = document.querySelector('#new-task-input-date'),
 		submit = document.querySelector('#new-task-submit'),
-		list_el = document.querySelector("#tasks");
+		listEl = document.querySelector("#tasks");
 
 	//add task
 	/*form.onsubmit = async (event) => {
@@ -37,13 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// функция для формирования листа задач
 	function formTodoList(todoList) {
-		list_el.innerHTML = todoList.map(
+		listEl.innerHTML = todoList.map(
 			(todo) =>
 				`
-                <div class="task" ${new Date() > new Date(todo.date)
-					? 'style="background-color: red"'
-					: (new Date(todo.date) - new Date() <= 3600 * 24 * 1000) ?
-						'style="background-color: green"' : ''}>
+                <div class="task" ${new Date() > new Date(todo.date)?
+					'style="background-color: red"':
+					(new Date(todo.date) - new Date() <= 3600 * 24 * 1000) ?
+					'style="background-color: green"' : ''}>
                 <div class="content ${todo.done === true ? 'task-done' : ''}">
                 <div class="text edit" ${new Date() > new Date(todo.date) ? 'style="color: black"' : ''}>${todo.todo}
                     <p>${todo.date.slice(-5)}</p>
@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="done" id="${todo.id}" ${new Date() > new Date(todo.date) ? 'style="color: black"' : ''}>
                 ${todo.done === true ? 'not done' : 'done'}
                 </button>
-                <button class="delete" id="${todo.id}" ${new Date() > new Date(todo.date) ? 'style="color: black"' : ''}>
+                <button class="delete" id="${todo.id}" ${new Date() > new Date(todo.date) ?
+					 'style="color: black"' : ''}>
                 Delete
                 </button>
                 </div>
@@ -78,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	//     console.log(allTodos, doneTodos, notDoneTodos);
 
 //delete todo
-	list_el.addEventListener('click', (e) => {
+	listEl.addEventListener('click', (e) => {
 		if (e.target.classList.contains('delete')) {
 			db.todos.delete(parseInt(e.target.id, 10));
 			console.log(e.target.parentElement.parentElement);
