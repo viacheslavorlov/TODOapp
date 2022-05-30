@@ -1,0 +1,27 @@
+
+task
+                    ${new Date() > new Date(todo.date)?
+					'style="background-color: red"':
+					(new Date(todo.date) - new Date() <= 3600 * 24000) ?
+					'style="background-color: green"' : ''}
+
+content
+                    ${todo.done === true ? 'task-done' : ''}
+
+text edit " 
+                    ${new Date() > new Date(todo.date) ? 'style="
+                    color: black "' : ''}
+
+btn-done
+                    $ {
+                        new Date() > new Date(todo.date) ? 'style="color: black"' : ''
+                    } >
+                    $ {
+                        todo.done === true ? 'not done' : 'done'
+                    }
+
+del-btn
+                    $ {
+                        new Date() > new Date(todo.date) ?
+                            'style="color: black"' : ''
+                    }

@@ -1,3 +1,5 @@
+import {Dexie} from 'dexie';
+
 document.addEventListener('DOMContentLoaded', () => {
 
 	//creating database structure
@@ -36,29 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	// функция для формирования листа задач
-	function formTodoList(todoList) {
+	function formTodoList(todoList, classAdd) {
 		listEl.innerHTML = todoList.map(
 			(todo) =>
 				`
-                <div class="task" ${new Date() > new Date(todo.date)?
-					'style="background-color: red"':
-					(new Date(todo.date) - new Date() <= 3600 * 24 * 1000) ?
-					'style="background-color: green"' : ''}>
-                <div class="content ${todo.done === true ? 'task-done' : ''}">
-                <div class="text edit" ${new Date() > new Date(todo.date) ? 'style="color: black"' : ''}>${todo.todo}
-                    <p>${todo.date.slice(-5)}</p>
-                    <p>${todo.date.slice(0, -6).split('-').reverse().join('-')}</p>
-                </div>
-                </div>
-                <div class="actions">
-                <button class="done" id="${todo.id}" ${new Date() > new Date(todo.date) ? 'style="color: black"' : ''}>
-                ${todo.done === true ? 'not done' : 'done'}
-                </button>
-                <button class="delete" id="${todo.id}" ${new Date() > new Date(todo.date) ?
-					 'style="color: black"' : ''}>
-                Delete
-                </button>
-                </div>
+                <div class="task ${classAdd}">
+					<div class="content ">
+						<div class="text edit">${todo.todo}
+							<p>${todo.date.slice(-5)}</p>
+							<p>${todo.date.slice(0, -6).split('-').reverse().join('-')}</p>
+						</div>
+					</div>
+					<div class="actions">
+						<button class="done" id="${todo.id}">Done</button> 
+						</button>
+						<button class="delete" id="${todo.id}" >
+						Delete
+						</button>
+					</div>
                 </div>
             `
 		).join("");
@@ -105,16 +102,25 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	showBtns.addEventListener('click', async (e) => {
 		allButtons.forEach(item => item.classList.remove('done-btn'));
-		const allTodos =  await db.todos.reverse().toArray();
+		const allTodos =  await db.todos.reverse().toArray(); //сортировка задач по датам в обратном порядке
 		allTodos.sort((a, b) => {
 			return new Date(a.date) - new Date(b.date); // сортировка задач по датам.
 		});
 		if (e.target.id === 'show-not-done') {
 			formTodoList(allTodos.filter(item => !item.done));
-			e.target.classList.add('done-btn');
+			document.querySelectorAll('.task').forEach(item => {
+				if(!item.done && item.date > new Date() + 3600 * 24) {
+					item.style.backgroundColor = 'rgb(40, 132, 236)';
+				} else {
+					item.style.backgroundColor = 'red';
+				}
+			});
+			// e.target.classList.add('done-btn');
+			
 		}
 		if (e.target.id === 'show-done') {
 			formTodoList(allTodos.filter(item => item.done));
+			document.querySelectorAll('.task').forEach(item => item.style.backgroundColor = 'green');
 			e.target.classList.add('done-btn');
 		}
 		if (e.target.id === 'show-all') {

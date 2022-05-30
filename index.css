@@ -1,17 +1,17 @@
 :root {
-    --dark: #05152E;
-    --darker: #1F2937;
-    --darkest: #001E3C;
-    --grey: #6B7280;
-    --pink: #EC4899;
-    --purple: #8B5CF6;
-    --light: #EEE;
+    --dark: #05152e;
+    --darker: #1f2937;
+    --darkest: #001e3c;
+    --grey: #6b7280;
+    --pink: #ec4899;
+    --purple: #8b5cf6;
+    --light: #eee;
 }
 
 * {
     margin: 0;
     box-sizing: border-box;
-    font-family: "Fira sans", sans-serif;
+    font-family: 'Fira sans', sans-serif;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     min-width: 90vw;
-    color: #FFF;
+    color: #fff;
     background-color: var(--dark);
 }
 
@@ -30,13 +30,13 @@ header {
     margin: 0 auto;
 }
 
-header h1{
+header h1 {
     font-size: 2.5rem;
     font-weight: 300;
     color: white;
     margin-bottom: 1rem;
 }
-h1{
+h1 {
     text-align: center;
 }
 #new-task-form {
@@ -75,22 +75,17 @@ button {
     font-size: 1.25rem;
     flex-flow: row wrap;
 }
-/*#show-all {*/
 
-
-
-/* #show-not-done {
-    background: linear-gradient(to right, #cb7773, #bd73cb);
-    color: #ffffff;
-} */
 
 .done-btn {
     background: linear-gradient(to right, #cb7773, #bd73cb);
     color: #ffffff;
 }
 
+
+
 #show-not-done:hover {
-    opacity: .9;
+    opacity: 0.8;
 }
 
 #new-task-input {
@@ -218,7 +213,7 @@ main {
 }
 
 .task-done {
-    opacity: .5;
+    opacity: 0.5;
     text-decoration: line-through;
 }
 
@@ -227,3 +222,14 @@ main {
         width: 100vw;
     }
 }
+
+/* 
+#tasks .task .done-task {
+    color: #fff;
+    background-color: rgb(6, 75, 6);
+}
+
+.not-done-task {
+    color: #fff;
+    background-color: ;
+} */
