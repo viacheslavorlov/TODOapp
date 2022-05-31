@@ -1,3 +1,7 @@
-let today = new Date('2022-05-1');
-today = today.toLocaleString().slice(0, 10)
-console.log(today);
+let body;
+function formTodoList() {
+	return Date.parse('2021-06-01T23:16') < new Date() ? 'missed-task' : 'not-missed-task'
+
+}
+
+console.log(formTodoList());
